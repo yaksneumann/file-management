@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    border: solid black 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-left: solid black 10px;
+    border-top: solid black 20px;
+    /* margin: 0 0 20px 10px; */
+}
+.container {
+    border-right: solid black 2px;
+    height: 100vh;
+    margin-top: -8px;
+}

@@ -1,0 +1,47 @@
+.button-container {
+    display: block;
+    border-bottom: 2px solid black;
+    height: 60px;
+    margin-left: -10px;
+    position: relative;
+    position: relative;
+    display: inline-block;
+}
+
+.circular-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #F8CECC;
+    border: 2px solid #D9A09D;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: transform 0.1s ease;
+
+    position: absolute;
+    bottom: 0pt;
+    left: 100pt;
+}
+
+.counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid white;
+}
