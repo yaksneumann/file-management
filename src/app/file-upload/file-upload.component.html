@@ -1,1 +1,10 @@
 <p>file-upload works!</p>
+
+<input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx">
+    @if (errorMessage()) {
+      <p>{{ errorMessage() }}</p>
+    }
+    @if (fileName()) {
+      <p>Selected file: {{ fileName() }}</p>
+    }
+    <button (click)="onUpload()" [disabled]="!isFileValid()">Upload</button>

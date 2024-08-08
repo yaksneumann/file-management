@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, } from '@angular/core';
 @Component({
   selector: 'app-files-upload-notification',
   standalone: true,
@@ -8,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './files-upload-notification.component.css'
 })
 export class FilesUploadNotificationComponent {
+
+
 
 }
