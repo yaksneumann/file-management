@@ -1,1 +1,11 @@
 <p>file-context-menu works!</p>
+@if (documents$(); as documents) {
+<ul>
+    @for (document of documents ; track document.id) {
+      <li>
+        {{ document.name }}
+        <button (click)="onDownloadFile(document.id)" img="download.png">Download</button>
+      </li>
+    } 
+  </ul>
+}

@@ -8,25 +8,26 @@ import { ErrorService } from './error.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-   @if(errorMessage) {
+    @if(errorMessage) {
     <div class="error-message">
-        {{ errorMessage }} 
+      {{ errorMessage }}
     </div>
-    } 
-  `,
-  styles: [`
-    .error-message {
-      background-color: #f8d7da;
-      color: #721c24;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #f5c6cb;
-      border-radius: 4px;
-      width: 200px;
-      margin: 0 auto;
     }
-  `
-  ]
+  `,
+  styles: [
+    `
+      .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        width: 200px;
+        margin: 0 auto;
+      }
+    `,
+  ],
 })
 export class ErrorDisplayComponent implements OnInit, OnDestroy {
   errorMessage: string | null = null;
@@ -35,11 +36,10 @@ export class ErrorDisplayComponent implements OnInit, OnDestroy {
   constructor(private errorService: ErrorService) {}
 
   ngOnInit() {
-    this.errorSubscription = this.errorService.errors$.subscribe(
-      error => {
-        this.errorMessage = error;
-        setTimeout(() => this.errorMessage = null, 5000);
-      });
+    this.errorSubscription = this.errorService.errors$.subscribe((error) => {
+      this.errorMessage = error;
+      setTimeout(() => (this.errorMessage = null), 3000);
+    });
   }
 
   ngOnDestroy() {

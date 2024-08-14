@@ -5,7 +5,7 @@
     margin-left: -10px;
     position: relative;
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .circular-button {
@@ -31,17 +31,17 @@
 
 .counter {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff4444;
-    color: white;
+    left: 120pt;
+    top: 10pt;
+    background-color: white;
+    color: black;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 12px;
     font-weight: bold;
-    border: 2px solid white;
+    border: 2px solid black;
 }

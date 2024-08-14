@@ -1,23 +1,31 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FileService } from '../file.service';
+// import { FileQuery } from '../fileQuery';
+import { type Document } from '../file.model';
+import { FormsModule } from '@angular/forms';
+import { ErrorDisplayComponent } from '../error-display.component';
+
 @Component({
   selector: 'app-file-upload',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, ErrorDisplayComponent],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css'
 })
-export class FileUploadComponent {
+
+export class FileUploadComponent implements OnInit {
   private documentService = inject(FileService);
-  // private selectedFile: string | null = null;
 
-
-
-  private selectedFile = signal<File | null>(null);
-  fileName = computed(() => this.selectedFile()?.name ?? '');
+  private selectedFile = signal<any | null>(null);
   fileAsBase64 = signal<string>('');
   isFileValid = signal(false);
   errorMessage = signal('');
+  fileTitle: string = '';
+  
+  //fileName = computed(() => this.fileTitle ?? this.selectedFile()?.name ?? '');
+
+  ngOnInit(): void {}
 
   onFileSelected(event: Event): void {
     const element = event.target as HTMLInputElement;
@@ -38,7 +46,7 @@ export class FileUploadComponent {
         this.encodeFileToBase64(file);
       } else {
         this.isFileValid.set(false);
-        this.errorMessage.set('Please select a PDF or DOCX file.');
+        this.errorMessage.set('נא לבחור קובץ!');
       }
     }
   }
@@ -48,37 +56,28 @@ export class FileUploadComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = reader.result as string;
-      // Remove the data URL part
       this.fileAsBase64.set(result.split(',')[1]);
-    };
-    reader.onerror = (error) => {
-      console.error('Error: ', error);
     };
   }
 
   onUpload(): void {
-
-    this.documentService.getDocuments()
-          .subscribe({
-            next: (response) => console.log('getDocuments successful', response),
-            error: (error) => console.error('getDocuments failed', error)
-          });
-
-
     if (this.isFileValid()) {
-      console.log('File Name:', this.fileName());
-      console.log('File as Base64:', this.fileAsBase64());
+      const docName = this.fileTitle || this.selectedFile().name;
+       //console.log('File Name:', docName);
 
-      //if (this.selectedFile) {
-        this.documentService.uploadDocument(this.fileName(), this.fileAsBase64())
-          .subscribe({
-            next: (response) => console.log('Upload successful', response),
-            error: (error) => console.error('Upload failed', error)
-          });
-     // }
+
+      const file: Document = {
+        documentContent: this.fileAsBase64(),
+        name: this.fileTitle || this.selectedFile().name
+      };
+      this.documentService.uploadDocument(file).subscribe();
+        // this.documentService.uploadDocument(this.fileAsBase64(), this.fileName())
+        //   .subscribe({
+        //     next: (response) => console.log('Upload successful', response),
+        //     error: (error) => console.error('Upload failed', error)
+        //   });
 
     }
   }
-
 
 }

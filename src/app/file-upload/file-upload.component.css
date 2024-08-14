@@ -1,0 +1,44 @@
+.input-container {
+    margin: 0 auto;
+    width: 300pt;
+    margin-top: 150pt;
+    text-align: center;
+}
+
+.title-input {
+    text-align: center;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.custom-file-upload img {
+    width: 20px;
+    height: auto;
+}
+
+#file-input {
+    display: none;
+}
+
+.img {
+    padding: 0px 20px 0 0px;
+}
+
+.btn-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-upload {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 20px;
+    width: 80pt;
+    color: black;
+    border: solid black 1px;
+    background: white;
+}

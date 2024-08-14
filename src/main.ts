@@ -1,14 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { ErrorHandler } from '@angular/core';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-
-import { errorInterceptor } from './app/error.interceptor';
+import { provideHttpClient } from '@angular/common/http';
+import { GlobalErrorHandler } from './app/globel-error-handler';
 
 // bootstrapApplication(AppComponent).catch((err) => console.error(err));
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(
-      withInterceptors([errorInterceptor])
-    )
+    provideHttpClient(),
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ]
 }).catch(err => console.error(err));

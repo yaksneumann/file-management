@@ -10,7 +10,7 @@ export class ErrorService {
 
   showError(message: string) {
     this.errorSubject.next(message);
-    console.error('Error:', message);
+    console.log('log:', message);
   }
 
   clearError() {

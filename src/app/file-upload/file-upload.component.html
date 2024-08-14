@@ -1,10 +1,20 @@
-<p>file-upload works!</p>
+<div class="input-container">
+    <input type="text" class="title-input" id="title" name="title" placeholder="הכנס כותרת" [(ngModel)]="fileTitle">
+    <input type="file" id="file-input" placeholder="העלה קובץ" (change)="onFileSelected($event)" accept=".pdf,.docx">
 
-<input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx">
     @if (errorMessage()) {
-      <p>{{ errorMessage() }}</p>
+    <p>{{ errorMessage() }}</p>
     }
-    @if (fileName()) {
-      <p>Selected file: {{ fileName() }}</p>
-    }
-    <button (click)="onUpload()" [disabled]="!isFileValid()">Upload</button>
+
+    <div class="icon">
+        <label for="file-input" class="custom-file-upload">
+            <img class="img" src="upload.png" alt="Upload file">
+            <span>העלה קובץ {{ fileTitle }}</span>
+        </label>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn-upload" (click)="onUpload()" [disabled]="!isFileValid()">שלח</button>
+
+    </div>
+</div>
